@@ -6,6 +6,10 @@ const teamSchema = Schema({
     team:{
         type:String,
         required:true
+    },
+    abb:{
+        type:String,
+        required:true
     }
 })
 module.exports = mongoose.model('Team',teamSchema);

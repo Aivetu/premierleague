@@ -14,12 +14,17 @@ const HandleLogin = async(req,res) =>{
 
     const matchPwd = bcrypt.compare(password,foundUser.password);
     if(matchPwd){
+        const roles= Object.values(foundUser.roles);
         const accessToken = jwt.sign(
             {
-                "username":foundUser.username
+                "UserInfo":
+                {
+                    "username":foundUser.username,
+                    "roles":roles
+                }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn:'3m'}
+            {expiresIn:'10m'}
         );
         const refreshToken = jwt.sign(
             {"username":foundUser.username},
