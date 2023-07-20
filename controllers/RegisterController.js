@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const createNewUser = async(req,res) =>{
 
-    const{username,password} = req.body;
+    const{username,roles,password} = req.body;
 
     if(!username||!password) return res.status(400).json({"message":"Username and Password Required"});
 
@@ -16,7 +16,8 @@ const createNewUser = async(req,res) =>{
 
         const result = await DB.create({
             "username":username,
-            "password":hashedPassword
+            "password":hashedPassword,
+            "roles": Object.values(req.body.roles)
         });
         console.log(result);
         res.status(200).json({"message":"new user successfully created"})
