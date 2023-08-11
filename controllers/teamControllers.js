@@ -7,7 +7,7 @@ const createTeams = async (req,res) =>{
     }
     const findTeam = await teams.findOne({team}).exec();
     if(findTeam){ 
-        return res.status(209).json({"message":"This team has already been created"});
+        return res.status(400).json({"message":"This team has already been created"});
     }
     try {
         const result = await teams.create({

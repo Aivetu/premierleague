@@ -20,7 +20,11 @@ const userSchema = Schema({
         type:String,
         required:true
     },
-    refreshToken: String
+    dateCreated: {
+        type: String
+    },
+    refreshToken: String,
+    sessionID:String
 })
 
 module.exports = mongoose.model('User',userSchema);

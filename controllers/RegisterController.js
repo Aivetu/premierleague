@@ -1,5 +1,6 @@
 const DB = require('../model/User');
 const bcrypt = require('bcrypt');
+const {format} = require('date-fns');
 
 const createNewUser = async(req,res) =>{
 
@@ -17,7 +18,8 @@ const createNewUser = async(req,res) =>{
         const result = await DB.create({
             "username":username,
             "password":hashedPassword,
-            "roles": Object.values(req.body.roles)
+            "roles": roles,
+            "dateCreated":format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx")
         });
         console.log(result);
         res.status(200).json({"message":"new user successfully created"})

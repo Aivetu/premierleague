@@ -16,5 +16,5 @@ status:{
     required:true 
 }
 
-})
+},{timestamps:true})
 module.exports = mongoose.model("fixture",fixtureSchema);

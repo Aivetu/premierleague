@@ -23,7 +23,7 @@ const createFixture = async(req,res)=>{
             "teamB":teamB,
             "status":status
         });
-        res.status(200).json({"message":"New fixture created successfully"});        
+        res.status(200).json({"message":"New fixture created successfully", data: response});        
     } catch (error) {
         console.error(error);
         

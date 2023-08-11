@@ -1,27 +1,24 @@
-require('dotenv').config();
-const express = require('express');
-const  mongoose = require('mongoose');
-const connectDB = require('./config/dbConn');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const cookieParser= require('cookie-parser');
-const verifyJwt = require('./middleware/VerifyJwt');
-const PORT = process.env.PORT || 8080 ;
-
-connectDB();
+const cookieParser = require("cookie-parser");
+const verifyJwt = require("./middleware/VerifyJwt");
+const register = require("./routes/register");
+const login = require("./routes/auth");
+const refresh = require("./routes/refresh");
+const team = require("./routes/api/teams");
+const fixtures = require("./routes/api/fixtures");
 
 app.use(express.json());
 
 app.use(cookieParser());
 
-
-app.use('/register',require("./routes/register"));
-app.use('/login',require('./routes/auth'));
-app.use('/refresh',require('./routes/refresh'));
-
+app.use("/register", register);
+app.use("/login", login);
+app.use("/refresh", refresh);
 
 app.use(verifyJwt);
-app.use('/team',require('./routes/api/teams'));
-app.use('/fixture',require('./routes/api/fixtures'));
-
+app.use("/team", team);
+app.use("/fixture", fixtures);
 
 module.exports = app;

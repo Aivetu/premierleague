@@ -1,0 +1,10 @@
+version: "4.21.1"
+services:
+  api:
+    build: .
+    container_name: api_container1
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 8081:8081
